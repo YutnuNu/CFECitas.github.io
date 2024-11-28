@@ -17,20 +17,34 @@
       <div class="titulo"><p>Agende su cita para una mejor experiencia</p></div>
     </div>
     <?php
-        require("conexion.php");
-        $seleccionar = "SELECT * FROM citas LIMIT 1";
-        $resultado = mysqli_query($conectar,$seleccionar) or die(mysqli_error($conectar));
-        while($datos_con = mysqli_fetch_array($resultado))
+      require("conexion.php");
+        if ($dia_cita=='dia_cita' && $hora_cita='hora_cita')
         {
+            echo 
+            "<p class='texto_datos' style='bottom: 30%;'>El horario seleccionado no esta disponible favor de seleccionar otro horario</p>";
             echo
-            "<p class='texto_datos' style='bottom: 50%;'>Su cita fue reservada a nombre de: ". $datos_con['nombre_usuario'] . "</p>";
-            echo
-            "<p class='texto_datos' style='bottom: 45%;'>el dia: " . $datos_con['dia_cita'] . "</p>";
-            echo
-            "<p class='texto_datos' style='bottom: 40%;'>en el horario de las: ". $datos_con['hora_cita'] . "</p>";
+            "<a href='Registro.php'><button id='botons' class='boton'>Regresar</button></a>";
         }
+        else
+        {
+          $seleccionar = "SELECT * FROM citas ORDER BY ID DESC LIMIT 1";
+          $resultado = mysqli_query($conectar,$seleccionar) or die(mysqli_error($conectar));
+          while($datos_con = mysqli_fetch_array($resultado))
+          {
+              echo
+              "<p class='texto_datos' style='bottom: 45%;'>Su cita fue reservada a nombre de: ". $datos_con['nombre_usuario'] . "</p>";
+              echo
+              "<p class='texto_datos' style='bottom: 40%;'>el dia: " . $datos_con['dia_cita'] . "</p>";
+              echo
+              "<p class='texto_datos' style='bottom: 35%;'>en el horario de las: ". $datos_con['hora_cita'] . "</p>";
+              echo
+              "<a href='Despedida.html'><button id='botons' class='boton'>Continuar</button></a>";
+          }
+        }
+      
+      require("cerrar.php");
     ?>
-    
+
     <div class="leyenda"><p>CAC Comitán de Dominguez</p></div>
   </body>
 </html>

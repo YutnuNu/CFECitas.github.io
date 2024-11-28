@@ -40,7 +40,7 @@
           </div>
           <div class="contenedor2">
             <label for="dia">Seleccione el dia</label>
-            <input type="date" id="dia_cita" name="dia_cita"/>
+            <input type="date" id="dia_cita" name="dia_cita" class="fecha"/>
             <label for="hora">Seleccione la hora</label>
               <select id="hora_cita" name="hora_cita">
                 <option value="8:00">8:00</option>
